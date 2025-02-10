@@ -5,6 +5,7 @@ import passport from "passport";
 import session from "express-session";
 import path from "path";
 
+
 import "./passport/github.auth.js";
 
 import userRoutes from "./routes/user.route.js";
@@ -15,6 +16,7 @@ import connectMongoDB from "./db/connectMongoDB.js";
 
 dotenv.config();
 
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
@@ -24,6 +26,7 @@ app.use(session({ secret: "keyboard cat", resave: false, saveUninitialized: fals
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 
 // Here we can remove the cors, it's not necessary in production because the frontend and backend are on the same domain. I forgot to mention that in the video, sorry about that.🙄
 // app.use(cors());
